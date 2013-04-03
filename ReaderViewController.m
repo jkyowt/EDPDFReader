@@ -26,9 +26,7 @@
 
 // !!!: #import "Feed+Toolbox.h"
 #import "Feed.h"
-#import "MTStatusBarOverlay.h"
 #import "Constants.h"
-#import "Performer.h"
 #import "ReaderConstants.h"
 #import "ReaderViewController.h"
 #import "ThumbsViewController.h"
@@ -40,7 +38,6 @@
 #import "XYReaderMainBottombar.h"
 #import "XRswitchViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "OperationLog+Toolbox.h"
 
 #import "XYString.h"
 
@@ -88,7 +85,7 @@ RFUIInterfaceOrientationSupportAll
 #pragma mark addedMethod
 
 - (BOOL)checkStoreStatus:(Feed *)feed{
-    return [Performer isNewsFavored:feed];
+    return NO;
 }
 //
 //- (void)postNotifications{
@@ -104,21 +101,21 @@ RFUIInterfaceOrientationSupportAll
 //}
 
 - (void)fullScreenLayout{
-    MTStatusBarOverlay *barHolder = [MTStatusBarOverlay sharedInstance];
-    [barHolder hideTemporary];
-    CGRect newFrame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height + 20);
-    self.view.frame = newFrame;
-    [UIApplication sharedApplication].statusBarHidden = YES;
-    self.wantsFullScreenLayout = YES;
+//    MTStatusBarOverlay *barHolder = [MTStatusBarOverlay sharedInstance];
+//    [barHolder hideTemporary];
+//    CGRect newFrame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height + 20);
+//    self.view.frame = newFrame;
+//    [UIApplication sharedApplication].statusBarHidden = YES;
+//    self.wantsFullScreenLayout = YES;
 }
 
 - (void)resetScreenToNormal {
-    CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20);
-    self.view.frame = newFrame;
-    [UIApplication sharedApplication].statusBarHidden = NO;
-    self.wantsFullScreenLayout = NO;
-    MTStatusBarOverlay *barHolder = [MTStatusBarOverlay sharedInstance];
-    [barHolder show];
+//    CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20);
+//    self.view.frame = newFrame;
+//    [UIApplication sharedApplication].statusBarHidden = NO;
+//    self.wantsFullScreenLayout = NO;
+//    MTStatusBarOverlay *barHolder = [MTStatusBarOverlay sharedInstance];
+//    [barHolder show];
     
 }
 
@@ -921,9 +918,9 @@ RFUIInterfaceOrientationSupportAll
     }else{
         remove = NO;
         favorNotify = NO;
-        [OperationLog logWithMethod:OLMethodTypeFavorite argumentArray:@[self.feed.uid] result:nil];
+//        [OperationLog logWithMethod:OLMethodTypeFavorite argumentArray:@[self.feed.uid] result:nil];
     }
-    [Performer updateFeedFavoriteStatus:self.feed];
+//    [Performer updateFeedFavoriteStatus:self.feed];
     [[DataStack sharedInstance]save];
     
 }
